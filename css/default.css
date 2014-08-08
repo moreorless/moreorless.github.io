@@ -84,15 +84,15 @@ pre ol{margin-left:25px;list-style-type:decimal;}
     background-position:50% 50%;
 }
 .blog .aside{
-    background-image:url(../images/background.jpg)
+    /*background-image:url(../images/background.jpg)*/
 }
 .opinion .aside{
-    background-image:url(../images/background.jpg)
+    /*background-image:url(../images/background.jpg)*/
 }
 .project .aside{
-    background-image:url(../images/background.jpg)
+    /*background-image:url(../images/background.jpg)*/
 }
-.index-content .section { margin-left:30%; padding-top:80px; padding-right:15%; ;}
+.index-content .section { margin-left:15%; padding-top:80px; padding-right:15%; ;}
 
 .index-content .artical-list { width:70%; margin:0 auto; }
 .index-content .artical-list li { margin-bottom:30px; }
