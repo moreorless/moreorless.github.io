@@ -5,4 +5,5 @@ category: opinion
 description: big data, soc, siems
 ---
 
-cisco opensoc slides [opensoc](../upload/security/cisco-opensoc.pdf)
+** cisco opensoc 
+slide [opensoc](../upload/security/cisco-opensoc.pdf)
