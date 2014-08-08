@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+   <title>Leon</title>
+   <link href="http://beiyuu.com/atom.xml" rel="self" type="application/atom+xml"/>
+   <link href="http://beiyuu.com" rel="alternate" type="text/html" />
+   <updated>2014-08-09T00:32:44+08:00</updated>
+   <id>http://beiyuu.com</id>
+   <author>
+     <name></name>
+     <email></email>
+   </author>
+
+   
+   <entry>
+     <title>常见故障排查手册</title>
+     <link href="http://beiyuu.com/troubleshooting"/>
+     <updated>2014-08-08T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/troubleshooting</id>
+     <content type="html">&lt;h2&gt;java crash&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;../upload/java/javacrash-analyse.pptx&quot;&gt;javacrash分析&lt;/a&gt;&lt;/p&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>应用大数据的SOC安全分析</title>
+     <link href="http://beiyuu.com/security-bigdata"/>
+     <updated>2014-08-08T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/security-bigdata</id>
+     <content type="html">&lt;h2&gt;cisco opensoc&lt;/h2&gt;
+
+&lt;p&gt;slide &lt;a href=&quot;../upload/security/cisco-opensoc.pdf&quot;&gt;opensoc&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;arcsight分析&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://zybuluo.com/wuwu119/note/21417&quot;&gt;范化分析&lt;/a&gt;&lt;/p&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>python学习</title>
+     <link href="http://beiyuu.com/python-study"/>
+     <updated>2014-08-08T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/python-study</id>
+     <content type="html">&lt;h2&gt;模块&lt;/h2&gt;
+
+&lt;p&gt;每一个python脚本都可以被当作是一个模块。模块以磁盘文件的形式存在。
+模块里的代码可以是一段直接执行的脚本，也可以是一堆类似库函数的代码，从而可以被别的模块导入调用。&lt;/p&gt;
+
+&lt;h2&gt;语法&lt;/h2&gt;
+
+&lt;p&gt;python不支持类型x++或++x这样的前置、后置自增/自减运算符，可以写成x += 1&lt;/p&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>吉他学习</title>
+     <link href="http://beiyuu.com/guitar"/>
+     <updated>2014-08-05T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/guitar</id>
+     <content type="html">&lt;p&gt;** 音阶
+1 | 2 | 3 | 4 | 5 | 6 | 7 | i
+do |re|mi|fa|sol|la|si|do
+261.6hz&lt;/p&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>Storm入门</title>
+     <link href="http://beiyuu.com/storm-study"/>
+     <updated>2014-07-15T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/storm-study</id>
+     <content type="html">&lt;h2&gt;简介&lt;/h2&gt;
+
+&lt;p&gt;Strom是一个流处理(Stream Processing)框架。
+Storm用户3中场景：事件流(Stream Processing)，持续计算(continuous computation)、分布式RPC(Distributed RPC)。针对这些场景，Storm设计了自己的计算模型:&lt;/p&gt;
+
+&lt;p&gt;Storm Topology
+&lt;img src=&quot;../../images/blog/storm/storm_topology.jpg&quot; alt=&quot;Storm Topology&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Storm Stream Grouping
+&lt;img src=&quot;../../images/blog/storm/storm_grouping.jpg&quot; alt=&quot;Storm Stream Grouping&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Storm High Level Architecture
+&lt;img src=&quot;../../images/blog/storm/storm_cluster.jpg&quot; alt=&quot;Storm High Level Architecture&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在一个Storm集群中，有主从两种不同的节点，三种不同的daemon：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nimbus运行在主节点上，通关全局&lt;/li&gt;
+&lt;li&gt;从节点上运行Supervisor，管理相关节点上的任务&lt;/li&gt;
+&lt;li&gt;每个从节点上还有一系列的worker process来运行具体任务&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;和我们熟知的Hadoop不一样的是， 这些daemon间并不直接发送心跳信息或者存在其他RPC控制协议。如图所示，他们之间的信息交换统统是通过Zookeeper来实现。这样的设计虽然引入了Zookeeper这个第三方依赖，但其极大的简化了Nimbus/Supervisor/Worker本身的设计，考虑到Zookeeper已经被广泛接受，已经成为分布式系统metadata store的事实解决方案，Storm在设计时所做的这个折中相当不错。&lt;/p&gt;
+
+&lt;p&gt;作为主节点， Nimbus类似于Hadoop中的Jobtracker，主要负责接收客户端提交的Topology，进行相应的验证，分配任务，进而把任务相关的元信息写入Zookeeper相应目录，此外，Nimbus还负责通过Zookeeper来监控任务执行情况。而Supervisor则类似于TaskTracker，负责会监听任务分配情况，根据实际情况启动/停止工作进程（worker）。相应的，Worker和Hadoop中的map/reduce task很类似，实际的数据处理发生在这里。 不同的是，map/reduce task 终究会结束，但worker则会一直执行下去。&lt;/p&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>pig入门</title>
+     <link href="http://beiyuu.com/pig-study"/>
+     <updated>2014-07-15T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/pig-study</id>
+     <content type="html">&lt;h2&gt;简介&lt;/h2&gt;
+
+&lt;p&gt;Apache Pig 是一个高级过程语言，适合于使用 Hadoop 和 MapReduce 平台来查询大型半结构化数据集。通过允许对分布式数据集进行类似 SQL 的查询，Pig 可以简化 Hadoop 的使用。&lt;/p&gt;
+
+&lt;p&gt;Apache Pig 改变了这种状况，它在 MapReduce 的基础上创建了更简单的过程语言抽象，为 Hadoop 应用程序提供了一种更加接近结构化查询语言 (SQL) 的接口。因此，您不需要编写一个单独的 MapReduce 应用程序，您可以用 Pig Latin 语言写一个脚本，在集群中自动并行处理与分发该脚本。&lt;/p&gt;
+
+&lt;p&gt;参考链接
+&lt;a href=&quot;http://www.ibm.com/developerworks/cn/linux/l-apachepigdataquery/&quot;&gt;http://www.ibm.com/developerworks/cn/linux/l-apachepigdataquery/&lt;/a&gt;&lt;/p&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>Markdown参考手册</title>
+     <link href="http://beiyuu.com/markdown-tutorial"/>
+     <updated>2014-07-15T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/markdown-tutorial</id>
+     <content type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet&quot;&gt;Markdown Cheatsheet on github&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;../../download/Markdown_Cheat_Sheet.pdf&quot;&gt;markdown cheatsheet&lt;/a&gt;&lt;/p&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>Zookeeper安装和使用初步</title>
+     <link href="http://beiyuu.com/zookeeper-start"/>
+     <updated>2014-07-13T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/zookeeper-start</id>
+     <content type="html">&lt;p&gt;Zookeeper 分布式服务框架是 Apache Hadoop 的一个子项目，它主要是用来解决分布式应用中经常遇到的一些数据管理问题，如：统一命名服务、状态同步服务、集群管理、分布式应用配置项的管理等。&lt;/p&gt;
+
+&lt;h2&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;zookeeper用于存储协调数据，如状态、配置、位置等信息，每个节点存储的数据量很小，KB级别。&lt;/p&gt;
+
+&lt;h3&gt;Node&lt;/h3&gt;
+
+&lt;h3&gt;Watches&lt;/h3&gt;
+
+&lt;p&gt;Zookeeper对Node的增、删、改、查都可以触发监听。&lt;/p&gt;
+
+&lt;p&gt;参考链接
+http://www.ibm.com/developerworks/cn/opensource/os-cn-zookeeper/&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/sharpxiajun/archive/2013/06/02/3113923.html&quot;&gt;zookeeper技术浅析&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;** Zookeeper就是解决分布式系统“部分失败”的框架。Zookeeper不是让分布式系统避免“部分失败”问题，而是让分布式系统当碰到部分失败时候，可以正确的处理此类的问题，让分布式系统能正常的运行。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;开发分布式系统是件很困难的事情，其中的困难主要体现在分布式系统的“部分失败”。“部分失败”是指信息在网络的两个节点之间传送时候，如果网络出了故障，发送者无法知道接收者是否收到了这个信息，而且这种故障的原因很复杂，接收者可能在出现网络错误之前已经收到了信息，也可能没有收到，又或接收者的进程死掉了。发送者能够获得真实情况的唯一办法就是重新连接到接收者，询问接收者错误的原因，这就是分布式系统开发里的“部分失败”问题。
+　　&lt;/p&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>Kafka安装和使用初步</title>
+     <link href="http://beiyuu.com/kafka-start"/>
+     <updated>2014-07-13T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/kafka-start</id>
+     <content type="html">&lt;h2&gt;简介&lt;/h2&gt;
+
+&lt;p&gt;Kafka依赖于Zookeeper。使用Kafka之前，最好对zookeeper有一定的了解。&lt;/p&gt;
+
+&lt;h2&gt;安装配置&lt;/h2&gt;
+
+&lt;h3&gt;Step 1 下载&lt;/h3&gt;
+
+&lt;p&gt;下载&lt;a href=&quot;http://kafka.apache.org/downloads.html&quot;&gt;Kafka&lt;/a&gt;，解压。&lt;/p&gt;
+
+&lt;h3&gt;Step 2 更新bat文件&lt;/h3&gt;
+
+&lt;p&gt;0.8.0版本的kafka的windows脚本文件中有很多错误，从&lt;a href=&quot;https://github.com/HCanber/kafka/releases&quot;&gt;这里&lt;/a&gt;下载更新。&lt;/p&gt;
+
+&lt;h3&gt;Step 3 更新配置&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;修改&lt;code&gt;config\server.properties&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt; log.dirs=c:\kafka\kafka-logs&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;修改&lt;code&gt;config\zookeeper.properties&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt; dataDir=c:\kafka\zookeeper-data&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;blockquote&gt;注意windows系统下，目录分隔符要使用双反斜杠&lt;/blockquote&gt;
+
+
+&lt;blockquote&gt;如果遇到问题，注意查看&lt;code&gt;kafka_2.8.0-0.8.0\logs&lt;/code&gt;目录下的日志文件。&lt;/blockquote&gt;
+
+
+&lt;h3&gt;Step 4 启动服务&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;cd c:\kafka
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;启动zookeeper服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在另一个命令行窗口启动kafka服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.\bin\windows\kafka-server-start.bat .\config\server.properties
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Step 5 创建一个主题&lt;/h3&gt;
+
+&lt;p&gt;创建一个主题&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.\bin\windows\kafka-create-topic.bat --zookeeper localhost:2181 --replica 1 --partition 1 --topic test
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;查看主题&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.\bin\windows\kafka-list-topic.bat --zookeeper localhost:2181
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Step 6 启动生产者、消费者&lt;/h3&gt;
+
+&lt;p&gt;在命令行窗口启动生产者&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic test
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;控制台进行一些输入&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;This is a message 
+This is another message
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;启动一个消费者&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.\bin\windows\kafka-console-consumer.bat --zookeeper localhost:2181 --topic test --from-beginning
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>使用Jekyll和Github搭建blog</title>
+     <link href="http://beiyuu.com/jekyll-start"/>
+     <updated>2014-07-13T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/jekyll-start</id>
+     <content type="html">&lt;h2&gt;缘起&lt;/h2&gt;
+
+&lt;p&gt;偶然间发现了&lt;a href=&quot;http://jekyllcn.com/&quot;&gt;Jekyll&lt;/a&gt;，完美实现了搭建个人blog的需求。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;静态发布，不需要数据库，支持markdown，实现了&lt;a href=&quot;http://jianshu.io/&quot;&gt;简书&lt;/a&gt;风格的写作&lt;/li&gt;
+&lt;li&gt;与&lt;a href=&quot;https://github.com/&quot;&gt;Github&lt;/a&gt;完美结合，解决了网站托管的问题。事实上github page就是基于Jekyll实现的&lt;/li&gt;
+&lt;li&gt;使用github的版本管理功能，保留文档修改历史记录&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;动手&lt;/h2&gt;
+
+&lt;p&gt;主要参考了两篇文章：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;中文站点有详细的安装指南 &lt;a href=&quot;http://jekyllcn.com/docs/installation/&quot;&gt;http://jekyllcn.com/docs/installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://beiyuu.com/github-pages/&quot;&gt;http://beiyuu.com/github-pages&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;推荐两个模板参考：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/mojombo/mojombo.github.io&quot;&gt;https://github.com/mojombo/mojombo.github.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/beiyuu/beiyuu.github.com&quot;&gt;https://github.com/beiyuu/beiyuu.github.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;安装及使用的步骤:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;首先，安装Ruby, RubyDevKit。&lt;/li&gt;
+&lt;li&gt;接下来，就是了解Jekyll的目录结构和配置文件。看一下文档，再结合两个模板的文件比较一下就清楚了。&lt;/li&gt;
+&lt;li&gt;最后，就是学习&lt;a href=&quot;http://wowubuntu.com/markdown/basic.html&quot;&gt;markdown语法&lt;/a&gt;，开始写文章:)&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;基本用法&lt;/p&gt;
+
+&lt;p&gt;安装了 Jekyll 的 Gem 包之后，就可以在命令行中使用 Jekyll 命令了。有以下一些用法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$jekyll build
+# =&amp;gt; 当前文件夹中的内容将会生成到 ./_site 文件夹中。
+jekyll build --destination &amp;lt;destination&amp;gt;
+# =&amp;gt; 当前文件夹中的内容将会生成到目标文件夹&amp;lt;destination&amp;gt;中。
+
+$ jekyll build --source &amp;lt;source&amp;gt; --destination &amp;lt;destination&amp;gt;
+# =&amp;gt; 指定源文件夹&amp;lt;source&amp;gt;中的内容将会生成到目标文件夹&amp;lt;destination&amp;gt;中。
+
+$ jekyll build --watch
+# =&amp;gt; 当前文件夹中的内容将会生成到 ./_site 文件夹中，
+#    查看改变，并且自动再生成。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Jekyll 同时也集成了一个开发用的服务器，可以让你使用浏览器在本地进行预览。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$jekyll serve
+# =&amp;gt; 一个开发服务器将会运行在 http://localhost:4000/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;基本的Jekyll结构如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;|-- _config.yml
+|-- _includes
+|-- _layouts
+|   |-- default.html
+|   `-- post.html
+|-- _posts
+|   |-- 2007-10-29-why-every-programmer-should-play-nethack.textile
+|   `-- 2009-04-26-barcamp-boston-4-roundup.textile
+|-- _site
+`-- index.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;问题整理&lt;/h2&gt;
+
+&lt;h3&gt;rdiscount安装问题&lt;/h3&gt;
+
+&lt;p&gt;执行&lt;code&gt;gem install rdiscount&lt;/code&gt;后，报错：&lt;code&gt;duplicate 'unsigned'&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;这是rdiscount最新版本的问题，windows系统的头文件定义与discount中的代码冲突。安装之前的一个版本，可以解决。参考&lt;a href=&quot;http://stackoverflow.com/questions/15021795/ruby-devkit-compile-issues&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install rdiscount -v=1.6.8 --platform=ruby
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;中文编码问题&lt;/h3&gt;
+
+&lt;blockquote&gt;&lt;p&gt;需要注意所有文件都需要使用UTF-8无BOM格式。&lt;/p&gt;&lt;/blockquote&gt;
+
+
+&lt;p&gt;在Windows系统下，&lt;code&gt;jekyll --server&lt;/code&gt;启动时，报错&lt;code&gt;... invalid byte sequence in GBK  ...&lt;/code&gt;
+这是中文兼容的问题，修改文件&lt;code&gt;C:/Ruby193/lib/ruby/gems/1.9.1/gems/jekyll-0.11.2/lib/jekyll/convertible.rb&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;self.content = File.read(File.join(base, name)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;改为&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;self.content = File.read(File.join(base, name), :encoding =&amp;gt; &quot;utf-8&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;YAML格式的注意事项&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;YAML文件头必须写在三个短横线内，且短线前不能有空格&lt;/li&gt;
+&lt;li&gt;“名: 值”对的冒号后需要有空格，否则不能正确识别为键值对；如果报key找不到的错误，可能就是这个原因&lt;/li&gt;
+&lt;li&gt;不能使用Tab符&lt;/li&gt;
+&lt;li&gt;表示数组成员的-后面要有空格&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+   </entry>
+   
+ 
+</feed>

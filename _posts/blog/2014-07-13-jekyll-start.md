@@ -57,12 +57,12 @@ Jekyll 同时也集成了一个开发用的服务器，可以让你使用浏览�
     |-- _includes
     |-- _layouts
     |   |-- default.html
-    |   `-- post.html
+    |   -- post.html
     |-- _posts
     |   |-- 2007-10-29-why-every-programmer-should-play-nethack.textile
-    |   `-- 2009-04-26-barcamp-boston-4-roundup.textile
+    |   -- 2009-04-26-barcamp-boston-4-roundup.textile
     |-- _site
-    `-- index.html
+    -- index.html
 
 ## 问题整理
 ### rdiscount安装问题
