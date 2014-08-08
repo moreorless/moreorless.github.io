@@ -5,6 +5,6 @@ description: 故障排查
 category: blog
 ---
 
-** java crash
+## java crash
 [javacrash分析](../upload/java/javacrash-analyse.pptx)
 
