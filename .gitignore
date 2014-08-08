@@ -1,4 +1,5 @@
 _drafts/
 _site/
+build/
 .DS_Store
 *.swp
