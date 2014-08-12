@@ -49,6 +49,10 @@ Jekyll 同时也集成了一个开发用的服务器，可以让你使用浏览�
     $jekyll serve
     # => 一个开发服务器将会运行在 http://localhost:4000/
 
+windows系统下，
+
+    $jekyll --serve
+    # => 一个开发服务器将会运行在 http://localhost:4000/
 
 
 基本的Jekyll结构如下：
