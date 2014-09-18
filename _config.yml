@@ -6,6 +6,6 @@ paginate: 8
 permalink: /:title
 
 title: Leon
-url: http://beiyuu.com
+url: 
 feed: /atom.xml
-author_info: <a href="http://beiyuu.com/">BeiYuu</a>
+author_info: 

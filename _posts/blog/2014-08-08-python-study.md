@@ -11,3 +11,34 @@ category: blog
 
 ## 语法
 python不支持类型x++或++x这样的前置、后置自增/自减运算符，可以写成x += 1
+
+## 类
+
+	class FooClass(object):
+	"""my very first class : FooClass"""
+	version = 0.1
+
+	def __init__(self, nm="John Doe"):
+		"""constructor"""
+		self.name = nm
+		print "create a class instance for", nm
+
+	def showname(self):
+		print "your name is ", self.name
+		print "my name is ", self.__class__.__name__
+
+	def showversion(self):
+		print self.version
+
+	def addMe2Me(slef, x):
+		return x+x
+
+
+	fool = FooClass()
+	fool.showname()
+	fool.showversion()
+	fool.addMe2Me(3)
+	fool.addMe2Me('xyz')
+
+	foo2 = FooClass('Jane Smith')
+	foo2.showname()
