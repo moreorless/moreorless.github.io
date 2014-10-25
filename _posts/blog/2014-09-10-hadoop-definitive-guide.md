@@ -48,3 +48,8 @@ MapReduce比数据库更适于处理大规模数据的原因，在于磁盘的�
 	</tbody>
 </table>
 
+## hadoop版本
+当前比较流行的Hadoop源代码版本有两个：Apache Hadoop和Cloudera Distributed Hadoop
+
+[hadoop版本选择探讨](http://dongxicheng.org/mapreduce-nextgen/how-to-select-hadoop-versions/)
+
