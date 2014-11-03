@@ -14,6 +14,7 @@ Note that though Drill works in a Hadoop cluster environment, Drill is not tied 
 
 ## Query Flow in Drill
 ![Query Flow in Drill](../../images/blog/drill/data_flow.jpg)
+
 1. The Drill client issues a query. Any Drillbit in the cluster can accept queries from the clients. There is no master-slave concept.
 2. The Drillbit then parses the query, optimizes it, and generates a distributed query plan that is optimized for fast and efficient execution.
 3. The Drillbit that accepts the query becomes the driving Drillbit node for the request. It gets a list of available Drillbit nodes in the cluster from ZooKeeper. The driving Drillbit determines the appropriate nodes to execute various query plan fragments to maximize data locality.
@@ -21,4 +22,15 @@ Note that though Drill works in a Hadoop cluster environment, Drill is not tied 
 5. The individual nodes finish their execution and return data to the driving Drillbit.
 6. The driving Drillbit streams results back to the client.
 
+## Core Modules within a Drillbit
+![Core Modules](../../images/blog/drill/arc-2.jpg)
+
+* RPC end point : 使用低开销的基于protobuf的RPC协议，实现与客户端的通信，同时实现了C++、JAVA的API接口。
+
+## Connecting to Datasource
+![Core Modules](../../images/blog/drill/storageplugin.PNG)
+
+Apache drill通过Storage plugin与数据源通信。
+
+## SQLLine 
 
