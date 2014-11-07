@@ -44,8 +44,6 @@ dfs实例默认指向本地文件系统，可以配置指向分布式文件系�
 
 分布式部署环境下，在一个Drill节点添加或更新存储插件实例时，Drill会自动向其它的节点广播这一信息，最终所有的节点会具有相同的存储插件配置。不需要在其他节点重复修改或进行重启操作。
 
-
-
 ## SQLLine 
 SQLLine是drill的命令行工具，可以连接数据库，执行SQL命令。
 
@@ -58,6 +56,7 @@ Web管理界面使用Jetty实现。
 * 前台页面引用了google服务器的jquery, bootstrap代码，国内访问非常慢，需要使用国内的cdn。
 
 修改apache-drill-0.4.0-incubating\jars\drill-java-exec-0.4.0-incubating-rebuffed.jar中的generic.ftl文件内容：
+
 ```
       <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 
@@ -72,9 +71,11 @@ sqlline使用embedded模式启动Drillbit服务时，报错：
 "Failure while start Drillbit in embedded mode"
 
 查看sqlline.log，发现以下信息
+
 <code>o.apache.drill.exec.server.Drillbit - Drillbit environment:.host.name=<NA></code>
 
 这是zookeeper代码中产生的错误，获取主机名时出错。
+
 ```
 try {
     put(l, "host.name",

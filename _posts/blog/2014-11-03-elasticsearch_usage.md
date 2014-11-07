@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ElasticSearch
+title: ElasticSearch Get Start
 description: 
 category: blog
 ---
@@ -395,3 +395,16 @@ curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
 
 ## JAVA API
 
+Maven repository
+
+```
+<dependency>
+    <groupId>org.elasticsearch</groupId>
+    <artifactId>elasticsearch</artifactId>
+    <version>${es.version}</version>
+</dependency>
+```
+
+两种调用方式
+* 节点模式
+* 透明模式
