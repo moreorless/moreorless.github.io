@@ -1,15 +1,132 @@
 ---
 layout: post
-title: ElasticSearch查询api
+title: ElasticSearch
 description: 
 category: blog
 ---
+
+## 节点管理
+查看所有节点
+
+```
+curl 'localhost:9200/_cat/nodes?v'
+```
+
+查看节点健康状况
+
+```
+curl 'localhost:9200/_cat/health?v'
+```
+
+## 索引管理
+### 列出所有索引
+
+```
+curl 'localhost:9200/_cat/indices?v'
+```
+
+### 创建索引
+
+索引的访问模式
+
+```
+curl -<REST Verb> <Node>:<Port>/<Index>/<Type>/<ID>
+```
+
+创建一个索引customer
+
+```
+curl -XPUT 'localhost:9200/customer?pretty'
+```
+
+
+下面的请求添加或更新一条数据索引，对应信息如下：
+
+* index : customer
+* type  : external
+* ID    : 1
+
+```
+curl -XPUT 'localhost:9200/customer/external/1?pretty' -d '
+{
+  "name": "John Doe"
+}'
+```
+
+ID可以省略
+
+```
+curl -XPOST 'localhost:9200/customer/external?pretty' -d '
+{
+  "name": "Jane Doe"
+}'
+```
+
+### 删除索引
+
+```
+curl -XDELETE 'localhost:9200/customer?pretty'
+```
+
+### 更新文档 updating documents
+
+使用_update命令
+
+```
+curl -XPOST 'localhost:9200/customer/external/1/_update?pretty' -d '
+{
+  "doc": { "name": "Jane Doe" }
+}'
+```
+
+使用<code>script</code>让age加5
+
+```
+curl -XPOST 'localhost:9200/customer/external/1/_update?pretty' -d '
+{
+  "script" : "ctx._source.age += 5"
+}'
+```
+
+### 删除文档 delete documents
+
+```
+curl -XDELETE 'localhost:9200/customer/external/2?pretty'
+
+curl -XDELETE 'localhost:9200/customer/external/_query?pretty' -d '
+{
+  "query": { "match": { "name": "John" } }
+}'
+```
+
+### 批量处理 batch processing
+
+先后索引ID=1，ID=2的两个文档
+
+```
+curl -XPOST 'localhost:9200/customer/external/_bulk?pretty' -d '
+{"index":{"_id":"1"}}
+{"name": "John Doe" }
+{"index":{"_id":"2"}}
+{"name": "Jane Doe" }
+'
+```
+
+先更细ID=1的记录，再删除ID=2的记录
+
+```
+curl -XPOST 'localhost:9200/customer/external/_bulk?pretty' -d '
+{"update":{"_id":"1"}}
+{"doc": { "name": "John Doe becomes Jane Doe" } }
+{"delete":{"_id":"2"}}
+'
+```
+
 
 ## REST查询
 http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/_the_search_api.html
 
 ### Request URI
-
 [REST Request URI](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-uri-request.html)
 
 在url中包含请求参数，类似http的GET请求
@@ -62,11 +179,9 @@ curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
 ```
 
 ### Request body
-
 [REST Request body](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-request-body.html)
 
 #### 查询第一条记录
-
 ```
 curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
 {
@@ -76,7 +191,6 @@ curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
 ```
 
 #### 查询第11到第20条记录
-
 ```
 curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
 {
@@ -113,7 +227,6 @@ curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
 ```
 
 #### match query
-
 查询account_number等于20的记录
 
 ```
@@ -197,6 +310,81 @@ curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
         { "match": { "address": "mill" } },
         { "match": { "address": "lane" } }
       ]
+    }
+  }
+}'
+```
+
+### Filter
+执行filter查询时，不需要计算文档的关联分数。(The score is a numeric value that is a relative measure of how well the document matches the search query that we specified. )
+
+所以
+
+```
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+  "query": {
+    "filtered": {
+      "query": { "match_all": {} },
+      "filter": {
+        "range": {
+          "balance": {
+            "gte": 20000,
+            "lte": 30000
+          }
+        }
+      }
+    }
+  }
+}'
+```
+
+### 聚合(Aggregation)
+对应于SQL的Group by和聚合函数。
+
+```
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+  "size": 0,
+  "aggs": {
+    "group_by_state": {
+      "terms": {
+        "field": "state"
+      }
+    }
+  }
+}'
+```
+
+相当于
+
+```
+SELECT COUNT(*) from bank GROUP BY state ORDER BY COUNT(*) DESC
+```
+
+Note that we set size=0 to not show search hits because we only want to see the aggregation results in the response.
+
+先按赵state字段做group by，然后对合并结果的balance字段取平均值，结果按照平均值降序输出。
+
+```
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+  "size": 0,
+  "aggs": {
+    "group_by_state": {
+      "terms": {
+        "field": "state",
+        "order": {
+          "average_balance": "desc"
+        }
+      },
+      "aggs": {
+        "average_balance": {
+          "avg": {
+            "field": "balance"
+          }
+        }
+      }
     }
   }
 }'
