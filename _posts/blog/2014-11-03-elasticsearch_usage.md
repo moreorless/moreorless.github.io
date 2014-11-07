@@ -11,6 +11,7 @@ http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/_the_searc
 [REST Request URI](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-uri-request.html)
 
 在url中包含请求参数，类似http的GET请求
+
 ```
 $ curl -XGET 'http://localhost:9200/twitter/tweet/_search?q=user:kimchy'
 ```
@@ -23,6 +24,7 @@ curl 'localhost:9200/bank/_search?q=*&pretty'
 <code>pretty</code> 表示返回格式化打印的文档结果
 
 对应的request body请求方式为：
+
 ```
 curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
 {
@@ -31,6 +33,7 @@ curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
 ```
 
 返回结果示例:
+
 ```
 {
     "_shards":{
@@ -59,6 +62,7 @@ curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
 [REST Request body](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-request-body.html)
 
 查询第一条记录
+
 ```
 curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
 {
@@ -66,7 +70,9 @@ curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
   "size": 1
 }'
 ```
+
 查询第11到第20条记录
+
 ```
 curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
 {
@@ -75,10 +81,12 @@ curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
   "size": 10
 }'
 ```
+
 <code>from</code> 标记索引开始的记录数（从0开始计数）
 <code>size</code> 返回的记录数，默认为10
 
 查询所有记录，并按balance降序排列
+
 ```
 curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
 {
