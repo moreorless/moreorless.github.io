@@ -342,6 +342,10 @@ curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
 ### 聚合(Aggregation)
 对应于SQL的Group by和聚合函数。
 
+在新版本中已经使用聚合替代了原来的的分片(Facet)。具体参考[这里](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-aggregations.html)
+
+[这篇文章](https://www.found.no/foundation/elasticsearch-aggregations/)介绍了Aggregation的特性。
+
 ```
 curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
 {
@@ -388,6 +392,56 @@ curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
     }
   }
 }'
+```
+
+### Facets (分面)
+*Facets在新版本中已被aggregation替代*
+
+简单介绍一下分面的使用
+
+创建artical索引，分配两个字段title, tags
+
+```
+curl -X DELETE "http://localhost:9200/articles"
+curl -X POST "http://localhost:9200/articles/article" -d '{"title" : "One",   "tags" : ["foo"]}'
+curl -X POST "http://localhost:9200/articles/article" -d '{"title" : "Two",   "tags" : ["foo", "bar"]}'
+curl -X POST "http://localhost:9200/articles/article" -d '{"title" : "Three", "tags" : ["foo", "bar", "baz"]}'
+```
+
+下面是一个分面查询，查询以<code>T</code>开头的文章，返回针对tags字段的分面查询结果
+
+```
+curl -X POST "http://localhost:9200/articles/_search?pretty=true" -d '
+  {
+    "query" : { "query_string" : {"query" : "T*"} },
+    "facets" : {
+      "tags" : { "terms" : {"field" : "tags"} }
+    }
+  }
+'
+```
+
+返回结果如下：
+
+```
+"facets" : {
+  "tags" : {
+    "_type" : "terms",
+    "missing" : 0,
+    "total": 5,
+    "other": 0,
+    "terms" : [ {
+      "term" : "foo",
+      "count" : 2
+    }, {
+      "term" : "bar",
+      "count" : 2
+    }, {
+      "term" : "baz",
+      "count" : 1
+    } ]
+  }
+}
 ```
 
 **需要注意的是，从elasticsearch完成一次查询后，elasticsearch不会在服务端保存任何资源或者游标。
