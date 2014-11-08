@@ -7,7 +7,10 @@ category: blog
 
 ## ElasticSearch的几个重要概念
 
-[参考PPT](../../download/elasticsearch/elasticsearch-intro.pdf)
+参考PPT
+[一个中文的介绍](../../download/elasticsearch/elasticsearch-intro.pdf)
+[老外写的很有趣的PPT](../../download/elasticsearch/elasticsearch_instresting.pdf)
+[关于分片shard的介绍](https://speakerdeck.com/kimchy/elasticsearch-big-data-search-analytics)
 
 ElasticSearch是一个分布式近实时搜索引擎。
 
@@ -16,40 +19,41 @@ ElasticSearch是一个分布式近实时搜索引擎。
 * NoSQL的解决方案
 
 与关系型数据库的比较
-<table>
-<thead>
-<tr><th>关系型数据库</th><th>ElasticSearch</th></tr>
-</thead>
-<tbody>
-	<tr>
-        <td>database</td>
-        <td>index</td>
-	</tr>
-	<tr>
-        <td>table</td>
-        <td>type</td>
-	</tr>
-	<tr>
-        <td>row</td>
-        <td>document</td>
-	</tr>
-	<tr>
-        <td>column</td>
-        <td>field</td>
-	</tr>
-	<tr>
-        <td>schema</td>
-        <td>mapping</td>
-	</tr>
-	<tr>
-        <td>index</td>
-        <td>全部索引</td>
-	</tr>
-	<tr>
-        <td>SQL</td>
-        <td>query DSL</td>
-	</tr>
-</tbody>
+
+<table class="table">
+	<thead>
+	<tr><th>关系型数据库</th><th>ElasticSearch</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+	        <td>database</td>
+	        <td>index</td>
+		</tr>
+		<tr>
+	        <td>table</td>
+	        <td>type</td>
+		</tr>
+		<tr>
+	        <td>row</td>
+	        <td>document</td>
+		</tr>
+		<tr>
+	        <td>column</td>
+	        <td>field</td>
+		</tr>
+		<tr>
+	        <td>schema</td>
+	        <td>mapping</td>
+		</tr>
+		<tr>
+	        <td>index</td>
+	        <td>全部索引</td>
+		</tr>
+		<tr>
+	        <td>SQL</td>
+	        <td>query DSL</td>
+		</tr>
+	</tbody>
 </table>
 
 一个创建索引的示例
