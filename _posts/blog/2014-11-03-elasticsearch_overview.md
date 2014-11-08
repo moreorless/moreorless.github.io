@@ -1,11 +1,60 @@
 ---
 layout: post
 title: ElasticSearch的几个概念
-description: 
+description: ElasticSearch的一些基本概念
 category: blog
 ---
 
 ## ElasticSearch的几个重要概念
+
+[参考PPT](../../download/elasticsearch/elasticsearch-intro.pdf)
+
+ElasticSearch是一个分布式近实时搜索引擎。
+
+* Restful访问接口
+* 在Lucene基础上发展而来
+* NoSQL的解决方案
+
+与关系型数据库的比较
+<table>
+<thead>
+<tr><th>关系型数据库</th><th>ElasticSearch</th></tr>
+</thead>
+<tbody>
+	<tr>
+        <td>database</td>
+        <td>index</td>
+	</tr>
+	<tr>
+        <td>table</td>
+        <td>type</td>
+	</tr>
+	<tr>
+        <td>row</td>
+        <td>document</td>
+	</tr>
+	<tr>
+        <td>column</td>
+        <td>field</td>
+	</tr>
+	<tr>
+        <td>schema</td>
+        <td>mapping</td>
+	</tr>
+	<tr>
+        <td>index</td>
+        <td>全部索引</td>
+	</tr>
+	<tr>
+        <td>SQL</td>
+        <td>query DSL</td>
+	</tr>
+</tbody>
+</table>
+
+一个创建索引的示例
+
+![一个创建索引的示例](../../images/blog/elasticsearch/es_index.png)
 
 [这篇文章](http://www.jianshu.com/p/492d4311ed04)写的更好
 
