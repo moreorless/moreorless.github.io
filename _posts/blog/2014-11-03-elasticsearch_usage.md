@@ -368,7 +368,7 @@ SELECT COUNT(*) from bank GROUP BY state ORDER BY COUNT(*) DESC
 
 Note that we set size=0 to not show search hits because we only want to see the aggregation results in the response.
 
-先按赵state字段做group by，然后对合并结果的balance字段取平均值，结果按照平均值降序输出。
+先对state字段做group by，然后对合并结果的balance字段取平均值，结果按照平均值降序输出。
 
 ```
 curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
@@ -460,5 +460,6 @@ Maven repository
 ```
 
 两种调用方式
+
 * 节点模式
 * 透明模式
