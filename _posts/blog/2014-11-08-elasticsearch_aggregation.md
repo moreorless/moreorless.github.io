@@ -24,7 +24,7 @@ Aggregation可以获得哪一个文档对应到哪个统计项(bucket)的信息�
 
 对比下图中的左右两个部分
 
-![Facet 和 Aggregation的对比](../../images/elasticsearch/aggregator-vs-facet.svg)
+![Facet 和 Aggregation的对比](../../images/blog/elasticsearch/aggregator-vs-facet.svg)
 
 图中，左侧是Facet的过程，右侧是Aggregation的过程。
 
@@ -35,20 +35,20 @@ The stats-aggregation is an example of what’s called a metric aggregator, and 
 
 metric聚合，包括像min, max, sum, svg, value_count, stats, entended_stats这样的聚合操作，这些聚合处理输入并生成一些数字结果，输出结果中不包含针对单个文档的信息，只包含统计数据。
 
-![metric aggregator](../../images/elasticsearch/metric-aggregator.svg)
+![metric aggregator](../../images/blog/elasticsearch/metric-aggregator.svg)
 
 The other kind of aggregator is a bucketing aggregator. These aggregators produce buckets, where a bucket has an associated value and a set of documents.
 
 另一种聚合操作成为bucketing aggregator。这种聚合操作生成统计项(bucket)，每个统计项对应一个数据和一组关联的文档集合。
 
-![buckets aggregator](../../images/elasticsearch/buckets-aggregator.svg)
+![buckets aggregator](../../images/blog/elasticsearch/buckets-aggregator.svg)
 
 ## Bucket Ordering
 By default, the buckets for a terms aggregator are ordered by the number of documents within them, high to low. You can make the order depend on the value of a metrics sub-aggregator as well. For example, you may want to produce a list of products and order them by the revenue generated, and not just the sales count. Similarily, the histogram-aggregation orders buckets by the implied key by default, but this can be changed as well.
 
 聚合后的统计项默认按照包含的文档数量进行排序（升序或者降序）。也可以指定根据子聚合器(sub-aggregator)的结果进行排序。
 
-![buckets ordering](../../images/elasticsearch/bucket-ordering.svg)
+![buckets ordering](../../images/blog/elasticsearch/bucket-ordering.svg)
 
 ## Real World Example
 一个使用Stackoverflow网站数据的例子。问题描述如下：
@@ -59,7 +59,7 @@ By default, the buckets for a terms aggregator are ordered by the number of docu
 
 聚合过程如下：
 
-[stackoverflow-tree.svg](../../images/elasticsearch/stackoverflow-tree.svg)
+[stackoverflow-tree.svg](../../images/blog/elasticsearch/stackoverflow-tree.svg)
 
 First, the terms-aggregation on the tags-field will produce one bucket per tag. The documents in each bucket are then fed to an avg-aggregator on the comment_count field for each document in the bucket. The documents are also sent to a nested-aggregator. The nested-aggregator pulls up the comments of each document in the bucket, and these inner comments are passed to a terms-aggregator. That terms-aggregator produces buckets of comments per author. Last, these are passed through a max-aggregator, to find the highest comment score.
 
