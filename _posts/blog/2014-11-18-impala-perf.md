@@ -51,7 +51,12 @@ describe formatted <tablename>
 
 ```
 
-* 使用文本格式时，文本数据中不能包含分隔符使用的字符，如果需要包含，需要在CREATE TABLE时使用ESCAPED BY语句指定转义字符。 *
+## 一些注意事项
+### 文本中出现分隔符
+** 使用文本格式时，文本数据中不能包含分隔符使用的字符，如果需要包含，需要在CREATE TABLE时使用ESCAPED BY语句指定转义字符。 **
+
+### NULL空值
+
 
 ## 一些实用信息
 impala的web管理端口
