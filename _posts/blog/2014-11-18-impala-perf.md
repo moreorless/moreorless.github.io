@@ -56,7 +56,9 @@ describe formatted <tablename>
 ** 使用文本格式时，文本数据中不能包含分隔符使用的字符，如果需要包含，需要在CREATE TABLE时使用ESCAPED BY语句指定转义字符。 **
 
 ### NULL空值
-
+* 使用文本格式存储时，NULL使用\N表示。
+* 没有NOT NULL字句来标识某列不能为空
+* 没有DEFAULT字句指定默认值
 
 ## 一些实用信息
 impala的web管理端口
