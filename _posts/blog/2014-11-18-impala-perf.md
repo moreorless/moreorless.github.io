@@ -5,6 +5,33 @@ description:
 category: blog
 ---
 
+## 基本操作
+
+```
+# 创建数据库
+create database <db_name>
+# 显示数据库表
+show databases;
+show tables;
+
+# 创建数据表
+create table t1 (x int, y int, s string);
+
+# 查看表结构
+describe <tablename>
+# 查看详细的表结构，分区信息，存储信息等
+describe formatted <tablename>
+
+```
+
+
+
+## 一些实用信息
+impala的web管理端口
+http://<ip>:25000
+
+
+
 ## 分区
 表的所有数据文件默认放在一个目录下。分区是一项基于一个或多个列上的值，在载入时物理拆分数据的技术。
 例如，对于根据 year 列分区的 school_records 表来说，对于每一个不同的年份都有一个单独的数据目录，并且这一年的所有数据都存放在这个目录下的数据文件中。一个包含 WHERE 条件如 YEAR=1966, YEAR IN (1989,1999), YEAR BETWEEN 1984 AND 1989 的查询，可以只从对应的一个或多个目录下检索数据文件，极大的减少了读取和测试的数据的数量。
