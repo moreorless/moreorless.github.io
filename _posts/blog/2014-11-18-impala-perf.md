@@ -16,6 +16,33 @@ show tables;
 
 # 创建数据表
 create table t1 (x int, y int, s string);
+# 文本格式的表 (Text data files)
+create table my_table(id int, s string, n int, t timestamp, b boolean);
+# 指定表列间的分隔符
+create table csv(id int, s string, n int, t timestamp, b boolean) row format delimited fields terminated by ',';
+create table tsv(id int, s string, n int, t timestamp, b boolean) row format delimited fields terminated by '\t';
+create table pipe_separated(id int, s string, n int, t timestamp, b boolean) row format delimited fields terminated by '|' stored as textfile;
+# 使用parquet格式存储的表
+create table parquet_table_name (x INT, y STRING) STORED AS PARQUET;
+
+# 使用分区()
+[localhost:21000] > drop table census;
+[localhost:21000] > create table census (name string, census_year int) partitioned by
+(year int);
+[localhost:21000] > insert into census partition (year=2010) values
+('Smith',2010),('Jones',2010);
+[localhost:21000] > insert into census partition (year=2011) values
+('Smith',2020),('Jones',2020),('Doe',2020);
+[localhost:21000] > insert into census partition (year=2012) values
+('Smith',2020),('Doe',2020);
+[localhost:21000] > select name from census where year = census_year and
+census_year=2010;
++-------+
+| name |
++-------+
+| Smith |
+| Jones |
++-------+
 
 # 查看表结构
 describe <tablename>
@@ -24,7 +51,7 @@ describe formatted <tablename>
 
 ```
 
-
+* 使用文本格式时，文本数据中不能包含分隔符使用的字符，如果需要包含，需要在CREATE TABLE时使用ESCAPED BY语句指定转义字符。 *
 
 ## 一些实用信息
 impala的web管理端口
