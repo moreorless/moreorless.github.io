@@ -10,6 +10,8 @@ category: opinion
 - Imooc/
   > npm install express
   > npm install body-parser
+  > npm install cookie-parser
+  >
   > npm install jade
   > npm install mongoose
   > npm install bower -g
@@ -47,3 +49,13 @@ Documents
 ## 生成配置文件
 bower init
 npm init
+
+## grunt
+
+grunt实现项目构建管理功能
+
+npm install -g grunt-cli 
+
+npm install grunt-contrib-watch --save-dev
+npm install grunt-nodemon --save-dev
+npm install --save-dev grunt-concurrent

@@ -34,3 +34,6 @@ https://github.com/binux/pyspider  (python实现)
 
 ## 即时通信
 Openfire https://github.com/igniterealtime/Openfire
+
+## 建站
+http://hexo.io/
