@@ -15,7 +15,10 @@ https://github.com/fixteam/fixflow
 PhantomJS  http://phantomjs.org  
 图标导出  phantomJs + highcharts/echars
           http://www.highcharts.com/docs/export-module/render-charts-serverside
-          
+bootstrap模板 https://wrapbootstrap.com/
+              http://almsaeedstudio.com/premium
+              http://bootflat.github.io/ (免费)
+网站设计  http://webapplayers.com/inspinia_admin-v1.9.2/Landing_page/index.html                        
 
 ## Nodejs
 pdf操作 https://github.com/devongovett/pdfkit
