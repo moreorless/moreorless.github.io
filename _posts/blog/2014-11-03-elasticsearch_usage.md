@@ -25,6 +25,13 @@ curl 'localhost:9200/_cat/health?v'
 curl 'localhost:9200/_cat/indices?v'
 ```
 
+```
+http://localhost:9200/_cat/indices?v
+
+支持通配符*
+http://localhost:9200/event*/_aliases?pretty=1
+```
+
 ### 创建索引
 
 索引的访问模式
