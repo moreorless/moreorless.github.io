@@ -69,3 +69,7 @@ Plumbr https://plumbr.eu/
 
 ## 建站
 http://hexo.io/
+
+# Linux Shell
+命令行的艺术 https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md
+Linux系统性能 https://github.com/nicolargo/glances
